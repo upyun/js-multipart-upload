@@ -1,0 +1,14 @@
+{
+    "browser": true,
+    "esnext": true,
+    "bitwise": true,
+    "camelcase": false,
+    "curly": true,
+    "immed": true,
+    "newcap": true,
+    "noarg": true,
+    "undef": true,
+    "unused": "vars",
+    "strict": true,
+    "mocha": true
+}

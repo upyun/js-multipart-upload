@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Demo</title>
+	<script src="bower_components/spark-md5/spark-md5.js"></script>
+	<script src="bower_components/async/lib/async.js"></script>
+
+	<script src="lib/upyun-mu.js"></script>
+	<style>
+		input,
+		a#submit {
+			display: block;
+			margin: 10px;
+			height: 40px;
+		}
+
+		#submit {
+			width: 100px;
+			background: #02a3c6;
+			border: none;
+			color: #fff;
+			line-height: 40px;
+			text-align: center;
+			cursor: pointer;
+		}
+
+		#submit:hover {
+			background: #09f;
+		}
+
+		#log {
+			border: 2px solid #f8f8f8;
+		}
+
+		#log ul {
+			list-style: none;
+			font: 14px;
+			line-height: 1.5;
+			color: #666;
+		}
+
+		#log ul li strong {
+			display: inline-block;
+			min-width: 100px;
+			color: #39b3d7;
+		}
+
+
+
+	</style>
+
+</head>
+<body>
+
+<form action="">
+	<input type="file" name="file" id="file">
+	<a id="submit">UPLOAD</a>
+</form>
+
+<div id="log">
+
+</div>
+
+
+<script>
+	document.getElementById('submit').onclick = function() {
+		var ext = '.' + document.getElementById('file').files[0].name.split('.').pop();
+		var instance = new Sand('demonstration', '1+JY2ZqD5UVfw6hQ8EesYQO50Wo=', parseInt((new Date().getTime() + 3600000) / 1000));
+		var options = {
+			'notify_url': 'http://upyun.com'
+		};
+
+		instance.setOptions(options);
+		instance.upload('/upload/test' + parseInt((new Date().getTime() + 3600000) / 1000) + ext);
+	};
+
+
+	// demo stuff
+	function addLog(data) {
+        var elem = document.createElement("ul");
+        for (var key in data) {
+        	if(key === 'path') {
+        		elem.innerHTML += '<li><strong>' + key + ':</strong>' + '<a target="_blank"  href="http://demonstration.b0.upaiyun.com' + data[key] + '">' + data[key] + '</a>' + '</li>';
+        	} else {
+        		elem.innerHTML += '<li><strong>' + key + ':</strong>' + data[key] + '</li>';
+        	}
+
+        }
+        log.appendChild(elem);
+    }
+
+	document.addEventListener('uploaded', function(e) {
+		var log = document.getElementById("log");
+		addLog(e.detail);
+	});
+</script>
+</body>
+</html>

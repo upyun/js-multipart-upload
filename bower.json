@@ -1,0 +1,27 @@
+{
+  "name": "upyun-multipart-upload",
+  "version": "0.1.0",
+  "authors": [
+    "Leigh Zhu <i@zhuli.me>"
+  ],
+  "description": "a js sdk for upyun multipart upload",
+  "main": "lib/upyun-mu.js",
+  "keywords": [
+    "upyun",
+    "upload",
+    "cdn"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/upyun/js-multipart-upload",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "spark-md5": "~0.0.5",
+    "async": "~0.9.0"
+  }
+}
