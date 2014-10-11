@@ -66,7 +66,16 @@
 <script>
 	document.getElementById('submit').onclick = function() {
 		var ext = '.' + document.getElementById('file').files[0].name.split('.').pop();
-		var instance = new Sand('demonstration', '1+JY2ZqD5UVfw6hQ8EesYQO50Wo=', parseInt((new Date().getTime() + 3600000) / 1000));
+
+		var config = {
+			bucket: 'demonstration',
+			expiration: parseInt((new Date().getTime() + 3600000) / 1000),
+
+			// 尽量不要使用直接传表单 API 的方式，以防泄露造成安全隐患
+			form_api_secret: '1+JY2ZqD5UVfw6hQ8EesYQO50Wo='
+		};
+
+		var instance = new Sand(config);
 		var options = {
 			'notify_url': 'http://upyun.com'
 		};
