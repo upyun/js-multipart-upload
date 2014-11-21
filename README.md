@@ -61,7 +61,7 @@ instance.setOptions(options)
 ```
 __参数说明__
 
-* `options`: Object 类型，包含额外的上传参数（详情见 [表单 API Policy](http://docs.upyun.com/api/form_api/#可选参数)）
+* `options`: Object 类型，包含额外的上传参数（详情见 [表单 API Policy](http://docs.upyun.com/api/form_api/#api_1)）
 
 ## 上传
 ```js
