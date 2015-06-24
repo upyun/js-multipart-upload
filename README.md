@@ -3,8 +3,21 @@
 
 ## Install
 
+### bower
 ```sh
 $ bower install --save upyun-multipart-upload
+```
+
+### 直接下载
+1.  下载本项目最新的 [Release](https://github.com/upyun/js-multipart-upload/releases/latest)
+2.  下载依赖 [async](https://github.com/caolan/async/releases/latest)
+3.  下载依赖 [SparkMD5](https://github.com/satazor/SparkMD5/releases/latest)
+4.  通过 `<script src=""></script>` 标签以此引入文件，注意将依赖放在前面
+
+```html
+<script src="/path/to/spark-md5/spark-md5.js"></script>
+<script src="/path/to/async/lib/async.js"></script>
+<script src="/path/to/js-multipart-upload/lib/upyun-mu.js"></script>
 ```
 
 ## Usage
