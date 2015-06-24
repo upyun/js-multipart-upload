@@ -1,14 +1,19 @@
 # upyun-multipart-upload
 使用 HTML 5 相关 API 开发的分块上传 SDK
 
-## Install
 
-### bower
+> 在您决定将本项目用于生产环境之前，请确保知晓如何保护表单密钥的安全性，以及本项目在部分低配设备上可能会有的兼容性和性能问题！
+
+
+## 安装
+你可以通过如下两种方式中任意一种引入本项目：
+
+### 1.bower
 ```sh
 $ bower install --save upyun-multipart-upload
 ```
 
-### 直接下载
+### 2.直接下载
 1.  下载本项目最新的 [Release](https://github.com/upyun/js-multipart-upload/releases/latest)
 2.  下载依赖 [async](https://github.com/caolan/async/releases/latest)
 3.  下载依赖 [SparkMD5](https://github.com/satazor/SparkMD5/releases/latest)
