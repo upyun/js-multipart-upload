@@ -9,13 +9,15 @@
 	<script src="lib/upyun-mu.js"></script>
 	<style>
 		input,
-		a#submit {
+		a#submit,
+		a#submit-canvas {
 			display: block;
 			margin: 10px;
 			height: 40px;
 		}
 
-		#submit {
+		#submit,
+		#submit-canvas {
 			width: 100px;
 			background: #02a3c6;
 			border: none;
@@ -25,7 +27,8 @@
 			cursor: pointer;
 		}
 
-		#submit:hover {
+		#submit:hover,
+		#submit-canvas {
 			background: #09f;
 		}
 
@@ -58,15 +61,40 @@
 	<a id="submit">UPLOAD</a>
 </form>
 
+<form action="">
+	<canvas id="canvas" width="300" height="200"></canvas>
+	<a id="submit-canvas">UPLOAD CANVAS</a>
+</form>
+
 <div id="log">
 
 </div>
 
-
 <script>
-	document.getElementById('submit').onclick = function() {
-		var ext = '.' + document.getElementById('file').files[0].name.split('.').pop();
+	var elCanvas = document.getElementById('canvas');
+	var context2d = elCanvas.getContext('2d');
+	var image = new Image();
+  // picture: http://alpha.wallhaven.cc/wallpaper/18662
+	image.src = './canvas.jpg';
+	image.onload = function() {
+		context2d.drawImage(image, 0, 0);
+	};
 
+	document.getElementById('submit-canvas').onclick = function() {
+		// 调用原生 toBlob 方法
+		// 所以仅支持 Firefox
+		// 可通过 polyfill 解决 toBlob 的兼容问题
+		elCanvas.toBlob(function(blob) {
+			upload(new File([blob], 'demo.png'));
+		});
+	};
+
+	document.getElementById('submit').onclick = function() {
+		upload(document.getElementById('file').files[0]);
+	};
+
+	function upload(file) {
+		var ext = '.' + file.name.split('.').pop();
 		var config = {
 			bucket: 'demonstration',
 			expiration: parseInt((new Date().getTime() + 3600000) / 1000),
@@ -81,8 +109,8 @@
 		};
 
 		instance.setOptions(options);
-		instance.upload('/upload/test' + parseInt((new Date().getTime() + 3600000) / 1000) + ext);
-	};
+		instance.upload('/upload/test' + parseInt((new Date().getTime() + 3600000) / 1000) + ext, file);
+	}
 
 
 	// demo stuff
